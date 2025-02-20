@@ -19,6 +19,10 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+    String name;
+    String email;
+    String password;
+    double amount;
 
     public int getId() {
         return id;
@@ -36,13 +40,6 @@ public class UserEntity {
         this.amount = amount;
     }
 
-    public String getSrcAccount() {
-        return srcAccount;
-    }
-
-    public void setSrcAccount(String srcAccount) {
-        this.srcAccount = srcAccount;
-    }
 
     public String getEmail() {
         return email;
@@ -59,8 +56,15 @@ public class UserEntity {
     public void setName(String name) {
         this.name = name;
     }
-    String name;
-    String email;
-    String srcAccount;
-    double amount;
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
 }

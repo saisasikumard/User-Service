@@ -2,6 +2,7 @@ package com.obito.UserService.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.netflix.discovery.converters.Auto;
 import com.obito.UserService.entity.UserEntity;
 import com.obito.UserService.repository.UserRepo;
 import org.apache.commons.logging.Log;
@@ -14,6 +15,8 @@ public class UserService {
     private static final Log log = LogFactory.getLog(UserService.class);
     @Autowired
     UserRepo userRepo;
+    @Autowired
+    JwtService jwtService;
     public UserEntity addUser(UserEntity user)
     {
         return userRepo.save(user);
@@ -27,5 +30,11 @@ public class UserService {
         user.setAmount(user.getAmount()-amount);
         log.info(new ObjectMapper().writeValueAsString(user));
         return userRepo.save(user);
+    }
+    public String generateToken(String username){
+        return jwtService.generateToken(username);
+    }
+    public void validateToken(String token){
+        jwtService.validateToken(token);
     }
 }
